@@ -1,0 +1,16 @@
+//
+//  ChildTrack-Prefix.pch
+//  ChildTrack
+//
+//  Created by zzy on 02/01/2018.
+//  Copyright © 2018 zzy. All rights reserved.
+//
+
+#ifndef ChildTrack_Prefix_pch
+#define ChildTrack_Prefix_pch
+
+#import "Config.h"
+#import "UIColor+String.h"
+#import "UIView+Frame.h"
+
+#endif /* ChildTrack_Prefix_pch */
