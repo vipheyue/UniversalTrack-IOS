@@ -13,35 +13,43 @@
 @interface MainViewController ()
 
 @end
-
+//x+2x+3x+4x = (ScreenH - 5*Margin)
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"全能追踪";
     
-    UIButton *myLocationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    myLocationBtn.backgroundColor = [UIColor colorWithHexString:@"201b1f"];
-    [myLocationBtn setTitle:@"我的轨迹" forState:UIControlStateNormal];
-    myLocationBtn.layer.cornerRadius = 10;
+    UIButton *introduceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    introduceBtn.backgroundColor = [UIColor colorWithHexString:@"a358c2"];
+    introduceBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    [introduceBtn setTitle:@"介绍" forState:UIControlStateNormal];
+    introduceBtn.layer.cornerRadius = 10;
+    introduceBtn.frame = CGRectMake(Margin, Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/10);
+    [self.view addSubview:introduceBtn];
     
-    myLocationBtn.frame = CGRectMake(Margin, Margin, ScreenW - 2*Margin, (ScreenH - 4*Margin)/6);
+    UIButton *myLocationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    myLocationBtn.backgroundColor = [UIColor colorWithHexString:@"f7ce5a"];
+    [myLocationBtn setTitle:@"我的轨迹" forState:UIControlStateNormal];
+    myLocationBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    myLocationBtn.layer.cornerRadius = 10;
+    myLocationBtn.frame = CGRectMake(Margin, introduceBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/5);
     [self.view addSubview:myLocationBtn];
     
     UIButton *trackedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    trackedBtn.backgroundColor = [UIColor colorWithHexString:@"201b1f"];
+    trackedBtn.backgroundColor = [UIColor colorWithHexString:@"ed6a6d"];
     [trackedBtn setTitle:@"让人追踪" forState:UIControlStateNormal];
+    trackedBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackedBtn.layer.cornerRadius = 10;
-    
-    trackedBtn.frame = CGRectMake(Margin, myLocationBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 4*Margin)/3);
+    trackedBtn.frame = CGRectMake(Margin, myLocationBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*3/10);
     [self.view addSubview:trackedBtn];
     
     UIButton *trackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    trackBtn.backgroundColor = [UIColor colorWithHexString:@"201b1f"];
+    trackBtn.backgroundColor = [UIColor colorWithHexString:@"7dc6cb"];
     [trackBtn setTitle:@"追踪他人" forState:UIControlStateNormal];
+    trackBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackBtn.layer.cornerRadius = 10;
-    
-    trackBtn.frame = CGRectMake(Margin, trackedBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 4*Margin)/2);
+    trackBtn.frame = CGRectMake(Margin, trackedBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*2/5);
     [self.view addSubview:trackBtn];
     
     
