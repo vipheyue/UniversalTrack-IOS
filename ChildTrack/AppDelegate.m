@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "SoftAgreementViewController.h"
 #import "BaseNavigationController.h"
 
 @interface AppDelegate ()
@@ -21,8 +22,10 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
+    SoftAgreementViewController *softAgreeVC = [[SoftAgreementViewController alloc]init];
+
     MainViewController *mainVC = [[MainViewController alloc]init];
-    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:mainVC];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:softAgreeVC];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
