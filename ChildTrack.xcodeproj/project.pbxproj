@@ -19,6 +19,7 @@
 		5A743A911FFBB31E00669B37 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A901FFBB31E00669B37 /* MainViewController.m */; };
 		5A743A961FFBB6E700669B37 /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A921FFBB6E700669B37 /* UIColor+String.m */; };
 		5A743A971FFBB6E700669B37 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A951FFBB6E700669B37 /* UIView+Frame.m */; };
+		5A9B22C31FFD111C003569DE /* SoftAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */; };
 		5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA9C0B31FFBBF35008CB118 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		5A743A931FFBB6E700669B37 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		5A743A941FFBB6E700669B37 /* UIColor+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
 		5A743A951FFBB6E700669B37 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		5A9B22C11FFD111C003569DE /* SoftAgreementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoftAgreementViewController.h; sourceTree = "<group>"; };
+		5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoftAgreementViewController.m; sourceTree = "<group>"; };
 		5AA9C0B21FFBBF35008CB118 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		5AA9C0B31FFBBF35008CB118 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +193,8 @@
 				5A743A901FFBB31E00669B37 /* MainViewController.m */,
 				5AA9C0B21FFBBF35008CB118 /* MapViewController.h */,
 				5AA9C0B31FFBBF35008CB118 /* MapViewController.m */,
+				5A9B22C11FFD111C003569DE /* SoftAgreementViewController.h */,
+				5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 			files = (
 				5A743A5A1FFBAC2100669B37 /* main.m in Sources */,
 				5A743A891FFBB26C00669B37 /* BaseViewController.m in Sources */,
+				5A9B22C31FFD111C003569DE /* SoftAgreementViewController.m in Sources */,
 				5A743A4C1FFBAC2100669B37 /* AppDelegate.m in Sources */,
 				5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */,
 				5A743A971FFBB6E700669B37 /* UIView+Frame.m in Sources */,
