@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "MapViewController.h"
+#import "TrackViewController.h"
 
 #define Margin 30
 
@@ -90,8 +91,11 @@
             
             break;
         case 104:
-            
+        {
+            TrackViewController *trackVC = [[TrackViewController alloc]init];
+            [self.navigationController pushViewController:trackVC animated:YES];
             break;
+        }
         default:
             break;
     }
