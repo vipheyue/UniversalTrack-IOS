@@ -11,6 +11,7 @@
 		5A17ED89200B8B8B00F215AD /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A17ED88200B8B8B00F215AD /* BaiduTraceSDK.framework */; };
 		5A17ED8A200B8B8B00F215AD /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A17ED88200B8B8B00F215AD /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A17ED8D200B914800F215AD /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A17ED8C200B914800F215AD /* TrackViewController.m */; };
+		5A17ED90200B98C800F215AD /* TrackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A17ED8F200B98C800F215AD /* TrackedViewController.m */; };
 		5A743A4C1FFBAC2100669B37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A4B1FFBAC2100669B37 /* AppDelegate.m */; };
 		5A743A541FFBAC2100669B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A743A531FFBAC2100669B37 /* Assets.xcassets */; };
 		5A743A571FFBAC2100669B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A743A551FFBAC2100669B37 /* LaunchScreen.storyboard */; };
@@ -64,6 +65,8 @@
 		5A17ED88200B8B8B00F215AD /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduTraceSDK.framework; path = ../../BaiduTraceSDK.framework; sourceTree = "<group>"; };
 		5A17ED8B200B914800F215AD /* TrackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
 		5A17ED8C200B914800F215AD /* TrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
+		5A17ED8E200B98C800F215AD /* TrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackedViewController.h; sourceTree = "<group>"; };
+		5A17ED8F200B98C800F215AD /* TrackedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackedViewController.m; sourceTree = "<group>"; };
 		5A743A471FFBAC2100669B37 /* ChildTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A743A4A1FFBAC2100669B37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A743A4B1FFBAC2100669B37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */,
 				5A17ED8B200B914800F215AD /* TrackViewController.h */,
 				5A17ED8C200B914800F215AD /* TrackViewController.m */,
+				5A17ED8E200B98C800F215AD /* TrackedViewController.h */,
+				5A17ED8F200B98C800F215AD /* TrackedViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ChildTrack/Pods-ChildTrack-resources.sh",
 				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
+				"${PODS_ROOT}/SGQRCode/SGQRCode/SGQRCode.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -480,6 +486,7 @@
 				5A743A971FFBB6E700669B37 /* UIView+Frame.m in Sources */,
 				5A743A911FFBB31E00669B37 /* MainViewController.m in Sources */,
 				5A743A961FFBB6E700669B37 /* UIColor+String.m in Sources */,
+				5A17ED90200B98C800F215AD /* TrackedViewController.m in Sources */,
 				5A743A881FFBB26C00669B37 /* BaseNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
