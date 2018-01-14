@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "MapViewController.h"
 
 #define Margin 30
 
@@ -36,7 +37,7 @@
     myLocationBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     myLocationBtn.layer.cornerRadius = 10;
     myLocationBtn.frame = CGRectMake(Margin, introduceBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/5);
-    introduceBtn.tag = 102;
+    myLocationBtn.tag = 102;
     [myLocationBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:myLocationBtn];
     
@@ -46,7 +47,7 @@
     trackedBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackedBtn.layer.cornerRadius = 10;
     trackedBtn.frame = CGRectMake(Margin, myLocationBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*3/10);
-    introduceBtn.tag = 103;
+    trackedBtn.tag = 103;
     [trackedBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:trackedBtn];
     
@@ -56,7 +57,7 @@
     trackBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackBtn.layer.cornerRadius = 10;
     trackBtn.frame = CGRectMake(Margin, trackedBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*2/5);
-    introduceBtn.tag = 104;
+    trackBtn.tag = 104;
     [trackBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:trackBtn];
     
@@ -79,9 +80,12 @@
         case 101:
             
             break;
-        case 102:
-            
+        case 102: //我的轨迹
+        {
+            MapViewController *mapVC = [[MapViewController alloc]init];
+            [self.navigationController pushViewController:mapVC animated:YES];
             break;
+        }
         case 103:
             
             break;
