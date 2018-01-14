@@ -322,6 +322,11 @@
 					5A743A461FFBAC2100669B37 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					5A743A5E1FFBAC2100669B37 = {
 						CreatedOnToolsVersion = 9.2;
