@@ -12,6 +12,8 @@
 
 @interface SoftAgreementViewController ()
 
+@property (nonatomic, weak) UIButton *agreeBtn;
+
 @end
 
 @implementation SoftAgreementViewController
@@ -30,7 +32,9 @@
     agreeBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, 0);
     [agreeBtn sizeToFit];
     agreeBtn.frame = CGRectMake(30, ScreenH - agreeBtn.height - 50, agreeBtn.width+4, agreeBtn.height);
+    [agreeBtn addTarget:self action:@selector(agreeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:agreeBtn];
+    self.agreeBtn = agreeBtn;
     
     UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [startBtn setTitle:@"开始使用" forState:UIControlStateNormal];
@@ -59,8 +63,20 @@
     scroll.contentSize = CGSizeMake(0, agreementLbl.height + 8);
 }
 
+- (void)agreeClick:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+}
+
 - (void)startClick {
     
+    if (!self.agreeBtn.selected) {
+        
+        [SVProgressHUD showImage:nil status:@"请勾选同意软件协议！"];
+        return;
+    }
+    
+    [[CommUtils sharedInstance] saveAgreeSoftState:YES];
     MainViewController *mainVC = [[MainViewController alloc]init];
     BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:mainVC];
     mainVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

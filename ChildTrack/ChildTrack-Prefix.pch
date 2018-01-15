@@ -12,5 +12,7 @@
 #import "Config.h"
 #import "UIColor+String.h"
 #import "UIView+Frame.h"
+#import "SVProgressHUD.h"
+#import "CommUtils.h"
 
 #endif /* ChildTrack_Prefix_pch */

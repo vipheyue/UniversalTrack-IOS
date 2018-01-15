@@ -25,6 +25,7 @@
 		5A743A971FFBB6E700669B37 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A951FFBB6E700669B37 /* UIView+Frame.m */; };
 		5A9B22C31FFD111C003569DE /* SoftAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */; };
 		5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA9C0B31FFBBF35008CB118 /* MapViewController.m */; };
+		5AF0DC56200C99DF0063FC2A /* CommUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0DC55200C99DF0063FC2A /* CommUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		5A9B22C21FFD111C003569DE /* SoftAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoftAgreementViewController.m; sourceTree = "<group>"; };
 		5AA9C0B21FFBBF35008CB118 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		5AA9C0B31FFBBF35008CB118 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5AF0DC54200C99DF0063FC2A /* CommUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommUtils.h; sourceTree = "<group>"; };
+		5AF0DC55200C99DF0063FC2A /* CommUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				5A743A8B1FFBB29100669B37 /* Config.h */,
+				5AF0DC54200C99DF0063FC2A /* CommUtils.h */,
+				5AF0DC55200C99DF0063FC2A /* CommUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				5A743A4C1FFBAC2100669B37 /* AppDelegate.m in Sources */,
 				5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */,
 				5A743A971FFBB6E700669B37 /* UIView+Frame.m in Sources */,
+				5AF0DC56200C99DF0063FC2A /* CommUtils.m in Sources */,
 				5A743A911FFBB31E00669B37 /* MainViewController.m in Sources */,
 				5A743A961FFBB6E700669B37 /* UIColor+String.m in Sources */,
 				5A17ED90200B98C800F215AD /* TrackedViewController.m in Sources */,
@@ -653,7 +659,7 @@
 				INFOPLIST_FILE = ChildTrack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzy.childtrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonny.childtrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -674,7 +680,7 @@
 				INFOPLIST_FILE = ChildTrack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzy.childtrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonny.childtrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

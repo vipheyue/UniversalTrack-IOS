@@ -23,11 +23,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
     [self initSDK];
-    SoftAgreementViewController *softAgreeVC = [[SoftAgreementViewController alloc]init];
-
-    MainViewController *mainVC = [[MainViewController alloc]init];
-    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:softAgreeVC];
+    
+    // 调整SVProgressHUD的背景色和前景色
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    BaseNavigationController *nav;
+    
+    if ([[CommUtils sharedInstance] fetchAgreeSoftState]) { //如果已经同意了软件协议，直接进入主页
+        
+        MainViewController *mainVC = [[MainViewController alloc]init];
+        nav = [[BaseNavigationController alloc]initWithRootViewController:mainVC];
+        
+    } else {//否则先进入软件协议界面
+        
+        SoftAgreementViewController *softAgreeVC = [[SoftAgreementViewController alloc]init];
+        nav = [[BaseNavigationController alloc]initWithRootViewController:softAgreeVC];
+    }
+    
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
