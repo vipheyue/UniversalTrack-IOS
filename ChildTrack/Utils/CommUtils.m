@@ -16,97 +16,23 @@
     return instance;
 }
 
-// 为了增加UUID获取的成功率。一旦获取成功，就保存到本地，取的时候，先取本地，本地没有再去第三方库中取。
-- (NSString *)fetchUUID {
+/**
+ * 获取是否同意了软件协议的状态
+ */
+- (BOOL)fetchAgreeSoftState {
+    
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    return [setting stringForKey:@"UserDefaultsUUID"];
+    return [setting boolForKey:@"SoftAgreement"];
 }
 
-- (void)saveUUID:(NSString *)UUID {
+/**
+ * 保存同意软件协议的状态
+ */
+- (void)saveAgreeSoftState:(BOOL)isAgree {
+    
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting setObject:UUID forKey:@"UserDefaultsUUID"];
+    [setting setObject:@(isAgree) forKey:@"SoftAgreement"];
     [setting synchronize];
 }
 
-/**
- * 获取userId
- */
-- (NSString *)fetchUserId {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    return [setting objectForKey:@"userId"];
-}
-
-/**
- * 保存userId
- */
-- (void)saveUserId:(NSString *)userId {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting setObject:userId forKey:@"userId"];
-    [setting synchronize];
-}
-
-/**
- * 移除userId
- */
-- (void)removeUserId {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting removeObjectForKey:@"userId"];
-    [setting synchronize];
-}
-
-/**
- * 获取userName
- */
-- (NSString *)fetchUserName {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    return [setting objectForKey:@"userName"];
-}
-
-/**
- * 保存userName
- */
-- (void)saveUserName:(NSString *)userName {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting setObject:userName forKey:@"userName"];
-    [setting synchronize];
-}
-/**
- * 移除userName
- */
-- (void)removeUserName {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting removeObjectForKey:@"userName"];
-    [setting synchronize];
-}
-
-/**
- * 获取当前所选城市
- */
-- (NSString *)fetchCityName {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    return [setting objectForKey:@"cityName"];
-}
-
-/**
- * 保存当前所选城市
- */
-- (void)saveCityName:(NSString *)cityName {
-    
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    [setting setObject:cityName forKey:@"cityName"];
-    [setting synchronize];
-}
-
-- (NSMutableArray *)getMyStickPostCache {
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:MyStickFileName];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-}
 @end
