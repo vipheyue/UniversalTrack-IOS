@@ -36,9 +36,9 @@
 #define kNavigationBarHeight 44.0f
 #define kNavigationPlusStatusHeight (kStatusBarHeight + kNavigationBarHeight)
 
-#define TraceAK @"Fy4v266qqF9pm96HLFP5N65GxSkidiAV"
-#define TraceMcode @"com.zzy.childtrack"
-#define TraceServiceID 153638
+#define TraceAK @"24jiEAMShNdz1F7ih1ZpWowc0mRNj08K"
+#define TraceMcode @"com.jonny.childtrack"
+#define TraceServiceID 116378
 
 #endif /* Config_h */
 
