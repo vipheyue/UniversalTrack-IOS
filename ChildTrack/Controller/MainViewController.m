@@ -16,7 +16,7 @@
 @interface MainViewController ()
 
 @end
-//x+2x+3x+4x = (ScreenH - 5*Margin)
+
 @implementation MainViewController
 
 - (void)viewDidLoad {
@@ -28,7 +28,7 @@
     introduceBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     [introduceBtn setTitle:@"介绍" forState:UIControlStateNormal];
     introduceBtn.layer.cornerRadius = 10;
-    introduceBtn.frame = CGRectMake(Margin, Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/10);
+    introduceBtn.frame = CGRectMake(ScreenW, Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/10);
     introduceBtn.tag = 101;
     [introduceBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:introduceBtn];
@@ -38,7 +38,7 @@
     [myLocationBtn setTitle:@"我的轨迹" forState:UIControlStateNormal];
     myLocationBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     myLocationBtn.layer.cornerRadius = 10;
-    myLocationBtn.frame = CGRectMake(Margin, introduceBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/5);
+    myLocationBtn.frame = CGRectMake(ScreenW, introduceBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)/5);
     myLocationBtn.tag = 102;
     [myLocationBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:myLocationBtn];
@@ -48,7 +48,7 @@
     [trackedBtn setTitle:@"让人追踪" forState:UIControlStateNormal];
     trackedBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackedBtn.layer.cornerRadius = 10;
-    trackedBtn.frame = CGRectMake(Margin, myLocationBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*3/10);
+    trackedBtn.frame = CGRectMake(ScreenW, myLocationBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*3/10);
     trackedBtn.tag = 103;
     [trackedBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:trackedBtn];
@@ -58,12 +58,25 @@
     [trackBtn setTitle:@"追踪他人" forState:UIControlStateNormal];
     trackBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     trackBtn.layer.cornerRadius = 10;
-    trackBtn.frame = CGRectMake(Margin, trackedBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*2/5);
+    trackBtn.frame = CGRectMake(ScreenW, trackedBtn.bottom+Margin, ScreenW - 2*Margin, (ScreenH - 5*Margin)*2/5);
     trackBtn.tag = 104;
     [trackBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:trackBtn];
     
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        for (int i = 0; i < 4; i++) {
+            
+            [UIView animateWithDuration:0.2 delay:i*0.08 usingSpringWithDamping:0.5 initialSpringVelocity:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                UIButton *btn = [self.view viewWithTag:101+i];
+                btn.x = Margin;
+                
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated{
