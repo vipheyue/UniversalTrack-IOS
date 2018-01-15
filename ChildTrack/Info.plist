@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>全能追踪需要访问您的相册</string>
-	<key>NSCameraUsageDescription</key>
-	<string>全能追踪需要访问您的相机</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -31,12 +27,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>全能追踪需要访问您的相机</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>需要使用您的地理位置用于持续定位并上传您的位置，若不允许，将无法记录您的轨迹哦~</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>需要使用您的地理位置用于持续定位并上传您的位置，若不允许，将无法记录您的轨迹哦~</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>需要使用您的地理位置用于持续定位并上传您的位置，若不允许，将无法记录您的轨迹哦~</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>全能追踪需要访问您的相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
