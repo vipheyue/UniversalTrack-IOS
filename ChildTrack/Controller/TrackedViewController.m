@@ -32,15 +32,16 @@
     
     UIImageView *qrCodeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, tipLbl.bottom+25, 150, 150)];
     qrCodeImageView.centerX = self.view.centerX;
-    qrCodeImageView.image = [SGQRCodeGenerateManager SG_generateWithDefaultQRCodeData:@"https://github.com/kingsic" imageViewWidth:qrCodeImageView.width];
+    qrCodeImageView.image = [SGQRCodeGenerateManager SG_generateWithDefaultQRCodeData:[[FCUUID uuidForDevice] substringFromIndex:16] imageViewWidth:qrCodeImageView.width];
     [self.view addSubview:qrCodeImageView];
     
     UILabel *identityLbl = [[UILabel alloc]init];
-    identityLbl.text = @"我的身份ID：12345";
+    identityLbl.textAlignment = NSTextAlignmentCenter;
+    identityLbl.text = [NSString stringWithFormat:@"我的身份ID:%@",[[FCUUID uuidForDevice] substringFromIndex:16]];
     identityLbl.font = [UIFont systemFontOfSize:14];
     identityLbl.textColor = [UIColor darkGrayColor];
     [identityLbl sizeToFit];
-    identityLbl.frame = CGRectMake(0, qrCodeImageView.bottom+25, identityLbl.width, identityLbl.height);
+    identityLbl.frame = CGRectMake(0, qrCodeImageView.bottom+25, ScreenW - 8 - 8, identityLbl.height);
     identityLbl.centerX = self.view.centerX;
     [self.view addSubview:identityLbl];
     
@@ -52,10 +53,17 @@
     copyBtn.frame = CGRectMake(15, identityLbl.bottom+25, ScreenW - 2*15, 50);
     [copyBtn addTarget:self action:@selector(copyBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:copyBtn];
-
+    
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];
+    NSLog(@"%@",timeString);
 }
 
-
+- (void)copyBtnClick {
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

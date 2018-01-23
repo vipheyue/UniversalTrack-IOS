@@ -7,8 +7,14 @@
 //
 
 #import "TrackViewController.h"
+#import "SGQRCode.h"
+#import "MapViewController.h"
+#import "TrackManage.h"
 
-@interface TrackViewController ()
+@interface TrackViewController ()<SGQRCodeScanManagerDelegate, SGQRCodeAlbumManagerDelegate>
+
+@property (nonatomic, strong) SGQRCodeScanManager *scanManager;
+@property (nonatomic, weak) UITextField *contentTxt;
 
 @end
 
@@ -47,16 +53,96 @@
     contentTxt.tintColor = [UIColor colorWithHexString:@"ff4081"];
     contentTxt.clearButtonMode = UITextFieldViewModeAlways;
     [self.view addSubview:contentTxt];
+    self.contentTxt = contentTxt;
     
     UIView *line = [[UIView alloc]init];
     line.frame = CGRectMake(contentTxt.x, contentTxt.bottom, contentTxt.width, 1);
     line.backgroundColor = [UIColor colorWithHexString:@"ff4081"];
     [self.view addSubview:line];
+    
 }
 
 - (void)scanQrCodeClick {
     
+    /// 扫描二维码创建
+    self.scanManager = [SGQRCodeScanManager sharedManager];
+    NSArray *arr = @[AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode128Code];
+    // AVCaptureSessionPreset1920x1080 推荐使用，对于小型的二维码读取率较高
+    [self.scanManager SG_setupSessionPreset:AVCaptureSessionPreset1920x1080 metadataObjectTypes:arr currentController:self];
+    self.scanManager.delegate = self;
     
+    
+    /// 从相册中读取二维码方法
+//    SGQRCodeAlbumManager *albumManager = [SGQRCodeAlbumManager sharedManager];
+//    [albumManager SG_readQRCodeFromAlbumWithCurrentController:self];
+//    albumManager.delegate = self;
+}
+
+/**
+ * 开始追踪
+ */
+- (void)trackBtnClick {
+    
+    [SVProgressHUD show];
+    __weak typeof (self)wSelf = self;
+    [[TrackManage sharedInstance] trackWithCompletionBlock:self.contentTxt.text trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
+       
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
+            [wSelf.navigationController pushViewController:map animated:YES];
+        });
+        
+    }];
+}
+
+
+
+#pragma mark - - - SGQRCodeAlbumManagerDelegate
+//- (void)QRCodeAlbumManagerDidCancelWithImagePickerController:(SGQRCodeAlbumManager *)albumManager {
+//    [self.view addSubview:self.scanningView];
+//}
+//- (void)QRCodeAlbumManager:(SGQRCodeAlbumManager *)albumManager didFinishPickingMediaWithResult:(NSString *)result {
+//    if ([result hasPrefix:@"http"]) {
+//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
+//        jumpVC.jump_URL = result;
+//        [self.navigationController pushViewController:jumpVC animated:YES];
+//
+//    } else {
+//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
+//        jumpVC.jump_bar_code = result;
+//        [self.navigationController pushViewController:jumpVC animated:YES];
+//    }
+//}
+
+#pragma mark - - - SGQRCodeScanManagerDelegate
+- (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager didOutputMetadataObjects:(NSArray *)metadataObjects {
+    NSLog(@"metadataObjects - - %@", metadataObjects);
+    if (metadataObjects != nil && metadataObjects.count > 0) {
+
+        [scanManager SG_palySoundName:@"SGQRCode.bundle/sound.caf"];
+        [scanManager SG_stopRunning];
+        [scanManager SG_videoPreviewLayerRemoveFromSuperlayer];
+        
+        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
+//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
+//        jumpVC.jump_URL = [obj stringValue];
+//        [self.navigationController pushViewController:jumpVC animated:YES];
+        
+    } else {
+        NSLog(@"暂未识别出扫描的二维码");
+    }
+}
+
+- (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager brightnessValue:(CGFloat)brightnessValue {
+//    if (brightnessValue < - 1) {
+//        [self.view addSubview:self.flashlightBtn];
+//    } else {
+//        if (self.isSelectedFlashlightBtn == NO) {
+//            [self removeFlashlightBtn];
+//        }
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
