@@ -10,4 +10,6 @@
 
 @interface MapViewController : BaseViewController
 
+- (instancetype)initWithParams:(NSMutableArray *)poisWithoutZero points:(BMKMapPoint *)points;
+
 @end
