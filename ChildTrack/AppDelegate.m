@@ -10,8 +10,15 @@
 #import "MainViewController.h"
 #import "SoftAgreementViewController.h"
 #import "BaseNavigationController.h"
-#import <BaiduTraceSDK/BaiduTraceSDK.h>
-#import <BaiduMapAPI_Map/BMKMapView.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+//微信SDK头文件
+#import "WXApi.h"
+//支付宝SDK
+#import "APOpenAPI.h"
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -24,7 +31,8 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    [self initSDK];
+    [self initBaiduSDK];
+    [self initShareSDK];
     
     // 调整SVProgressHUD的背景色和前景色
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
@@ -49,7 +57,7 @@
     return YES;
 }
 
-- (void)initSDK {
+- (void)initBaiduSDK {
     
     // 设置鹰眼SDK的基础信息
     // 每次调用startService开启轨迹服务之前，可以重新设置这些信息。
@@ -59,6 +67,54 @@
     // 初始化地图SDK
     BMKMapManager *mapManager = [[BMKMapManager alloc] init];
     [mapManager start:TraceAK generalDelegate:self];
+}
+
+- (void)initShareSDK {
+
+    [ShareSDK registerActivePlatforms:@[
+                                        @(SSDKPlatformTypeWechat),
+                                        @(SSDKPlatformTypeQQ),
+                                        @(SSDKPlatformTypeAliSocial)
+                                        ]
+                             onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             case SSDKPlatformTypeAliSocial:
+                 [ShareSDKConnector connectAliSocial:[APOpenAPI class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+                      onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+                 
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:@""
+                                       appSecret:@""];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:@""
+                                      appKey:@""
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeAliSocial:
+                 [appInfo SSDKSetupAliSocialByAppId:@""];
+                 break;
+             default:
+                 break;
+         }
+     }];
 }
 
 #pragma mark - BMKGeneralDelegate
