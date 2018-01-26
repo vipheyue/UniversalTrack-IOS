@@ -18,18 +18,20 @@
 
 #endif
 
-#define CustomColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha: 1.0]
-#define NavgationBarColor [UIColor colorWithHexString:@"#2dbaa6"]
-#define kSeparatorLineColor [UIColor colorWithHexString:@"#ebebeb"]
-#define randomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+#define GLOBAL_QUEUE dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define MAIN_QUEUE dispatch_get_main_queue()
 
-#define ScreenW [UIScreen mainScreen].bounds.size.width
-#define ScreenH [UIScreen mainScreen].bounds.size.height
+#define kAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define BSNotificationCenter [NSNotificationCenter defaultCenter]
 #define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
-#define kAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define randomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+#define CustomColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha: 1.0]
+#define NavgationBarColor [UIColor colorWithHexString:@"#2dbaa6"]
+#define kSeparatorLineColor [UIColor colorWithHexString:@"#ebebeb"]
 
+#define ScreenW [UIScreen mainScreen].bounds.size.width
+#define ScreenH [UIScreen mainScreen].bounds.size.height
 #define kIsIPhoneX ((ScreenW == 375) && (ScreenH == 812))
 #define kIPhoneXBottomAddtion (kIsIPhoneX ? 34 : 0)
 #define kStatusBarHeight (kIsIPhoneX ? 44.0f : 20.0f)
