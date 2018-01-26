@@ -36,6 +36,7 @@
 		5A5F98C8201730230033CEBA /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5F98C7201730230033CEBA /* JavaScriptCore.framework */; };
 		5A5F98CA201730300033CEBA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5F98C9201730300033CEBA /* libsqlite3.tbd */; };
 		5A6FA3582011B6EB001D39C3 /* KeychainAccessGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A6FA3572011B6EB001D39C3 /* KeychainAccessGroups.plist */; };
+		5A7104A520187C26004FD7C7 /* softagreement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A7104A420187C26004FD7C7 /* softagreement.txt */; };
 		5A743A4C1FFBAC2100669B37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A743A4B1FFBAC2100669B37 /* AppDelegate.m */; };
 		5A743A541FFBAC2100669B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A743A531FFBAC2100669B37 /* Assets.xcassets */; };
 		5A743A571FFBAC2100669B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A743A551FFBAC2100669B37 /* LaunchScreen.storyboard */; };
@@ -123,6 +124,7 @@
 		5A5F98C7201730230033CEBA /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		5A5F98C9201730300033CEBA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		5A6FA3572011B6EB001D39C3 /* KeychainAccessGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KeychainAccessGroups.plist; sourceTree = "<group>"; };
+		5A7104A420187C26004FD7C7 /* softagreement.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = softagreement.txt; sourceTree = "<group>"; };
 		5A743A471FFBAC2100669B37 /* ChildTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A743A4A1FFBAC2100669B37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A743A4B1FFBAC2100669B37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 		5A743A811FFBB15200669B37 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5A7104A420187C26004FD7C7 /* softagreement.txt */,
 				5A743A531FFBAC2100669B37 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -602,6 +605,7 @@
 				5A5F98B020172FEA0033CEBA /* README.txt in Resources */,
 				5A5F98B620172FEA0033CEBA /* ShareSDK.bundle in Resources */,
 				5A743A541FFBAC2100669B37 /* Assets.xcassets in Resources */,
+				5A7104A520187C26004FD7C7 /* softagreement.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
