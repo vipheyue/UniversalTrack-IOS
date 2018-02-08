@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "SoftAgreementViewController.h"
 #import "BaseNavigationController.h"
+#import "TrackManage.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
@@ -19,6 +20,7 @@
 #import "WXApi.h"
 //支付宝SDK
 #import "APOpenAPI.h"
+
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -32,7 +34,7 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     [self initBaiduSDK];
-    [self initShareSDK];
+//    [self initShareSDK];
     
     // 调整SVProgressHUD的背景色和前景色
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
@@ -128,7 +130,10 @@
 
 - (void)onGetPermissionState:(int)iError {
     if (0 == iError) {
+        
         DLog(@"授权成功");
+        [[TrackManage sharedInstance] StartService];
+        
     } else {
         DLog(@"onGetPermissionState %d",iError);
     }

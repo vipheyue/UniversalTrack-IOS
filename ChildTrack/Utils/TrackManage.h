@@ -13,6 +13,13 @@ typedef void(^TrackBlock)(BMKMapPoint *points, NSMutableArray *poisWithoutZero);
 @interface TrackManage : NSObject
 
 + (instancetype)sharedInstance;
+/**
+ * 开启轨迹
+ */
+- (void)StartService;
+/**
+ * 查询轨迹
+ */
 - (void)trackWithCompletionBlock:(NSString *)entityName trackBlock:(TrackBlock)trackBlock;
 
 @end
