@@ -133,10 +133,7 @@
     if (0 == iError) {
         
         DLog(@"授权成功");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [[TrackManage sharedInstance] StartService];
-        });
+        [[TrackManage sharedInstance] StartService];
         
     } else {
         DLog(@"onGetPermissionState %d",iError);

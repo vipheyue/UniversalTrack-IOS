@@ -53,8 +53,9 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
  */
 - (void)StartService {
     
-    BTKStartServiceOption *op = [[BTKStartServiceOption alloc] initWithEntityName:[[FCUUID uuidForDevice] substringFromIndex:16]];
     if (!self.isServiceStarted) {
+        
+        BTKStartServiceOption *op = [[BTKStartServiceOption alloc] initWithEntityName:[[FCUUID uuidForDevice] substringFromIndex:16]];
         // 开启服务
         [[BTKAction sharedInstance] startService:op delegate:self];
     }
