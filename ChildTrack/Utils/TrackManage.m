@@ -81,13 +81,13 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStartService:(BTKServiceErrorCode)error {
     // 维护状态标志
     if (error == BTK_START_SERVICE_SUCCESS || error == BTK_START_SERVICE_SUCCESS_BUT_OFFLINE) {
-        NSLog(@"轨迹服务开启成功");
+        DLog(@"轨迹服务开启成功");
         self.isServiceStarted = YES;
         if (!self.isGatherStarted) {
             [[BTKAction sharedInstance] startGather:self];
         }
     } else {
-        NSLog(@"轨迹服务开启失败");
+        DLog(@"轨迹服务开启失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -136,10 +136,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStopService:(BTKServiceErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_SERVICE_NO_ERROR) {
-        NSLog(@"轨迹服务停止成功");
+        DLog(@"轨迹服务停止成功");
         self.isServiceStarted = NO;
     } else {
-        NSLog(@"轨迹服务停止失败");
+        DLog(@"轨迹服务停止失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -168,10 +168,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStartGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_START_GATHER_SUCCESS) {
-        NSLog(@"开始采集成功");
+        DLog(@"开始采集成功");
         self.isGatherStarted = YES;
     } else {
-        NSLog(@"开始采集失败");
+        DLog(@"开始采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -211,10 +211,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStopGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_GATHER_NO_ERROR) {
-        NSLog(@"停止采集成功");
+        DLog(@"停止采集成功");
         self.isGatherStarted = NO;
     } else {
-        NSLog(@"停止采集失败");
+        DLog(@"停止采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
