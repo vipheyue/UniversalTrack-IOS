@@ -7,9 +7,11 @@
 //
 
 #import "MainViewController.h"
+#import "SoftIntroduceViewController.h"
 #import "MapViewController.h"
 #import "TrackViewController.h"
 #import "TrackedViewController.h"
+#import "TrackManage.h"
 
 #define Margin 30
 
@@ -93,12 +95,25 @@
     
     switch (sender.tag) {
         case 101:
-            
+        {
+            SoftIntroduceViewController *softIntroduceVC = [[SoftIntroduceViewController alloc]init];
+            [self.navigationController pushViewController:softIntroduceVC animated:YES];
             break;
+        }
         case 102: //我的轨迹
         {
-            MapViewController *mapVC = [[MapViewController alloc]init];
-            [self.navigationController pushViewController:mapVC animated:YES];
+            [SVProgressHUD show];
+            __weak typeof (self)wSelf = self;
+            [[TrackManage sharedInstance] trackWithCompletionBlock:[[FCUUID uuidForDevice] substringFromIndex:16] trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [SVProgressHUD dismiss];
+                    MapViewController *mapVC = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
+                    [wSelf.navigationController pushViewController:mapVC animated:YES];
+                });
+                
+            }];
             break;
         }
         case 103:
