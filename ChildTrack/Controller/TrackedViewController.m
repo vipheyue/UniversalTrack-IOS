@@ -34,7 +34,7 @@
     
     UIImageView *qrCodeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, tipLbl.bottom+25, 150, 150)];
     qrCodeImageView.centerX = self.view.centerX;
-    qrCodeImageView.image = [SGQRCodeGenerateManager SG_generateWithDefaultQRCodeData:[[FCUUID uuidForDevice] substringFromIndex:16] imageViewWidth:qrCodeImageView.width];
+    qrCodeImageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:[[FCUUID uuidForDevice] substringFromIndex:16] imageViewWidth:qrCodeImageView.width];
     [self.view addSubview:qrCodeImageView];
     
     UILabel *identityLbl = [[UILabel alloc]init];
@@ -59,53 +59,65 @@
 
 - (void)copyBtnClick {
     
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"你好";
+    [SVProgressHUD show];
     
-    NSArray *imageArray = @[[UIImage imageNamed:@"checkbox_selected"]];
-    //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
-    if (imageArray) {
+    NSString *textToShare = [NSString stringWithFormat:@"长按复制,打开全能追踪APP,查看我的轨迹\n¥%@¥",[[FCUUID uuidForDevice] substringFromIndex:16]];
+    
+    NSArray *activityItems = @[textToShare];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:^{
         
-        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:@"分享内容"
-                                         images:imageArray
-                                            url:[NSURL URLWithString:@"http://mob.com"]
-                                          title:@"分享标题"
-                                           type:SSDKContentTypeAuto];
-        //有的平台要客户端分享需要加此方法，例如微博
-        [shareParams SSDKEnableUseClientShare];
-        //2、分享（可以弹出我们的分享菜单和编辑界面）
-        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                                 items:nil
-                           shareParams:shareParams
-                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                       
-                       switch (state) {
-                           case SSDKResponseStateSuccess:
-                           {
-                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
-                                                                                   message:nil
-                                                                                  delegate:nil
-                                                                         cancelButtonTitle:@"确定"
-                                                                         otherButtonTitles:nil];
-                               [alertView show];
-                               break;
-                           }
-                           case SSDKResponseStateFail:
-                           {
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                               message:[NSString stringWithFormat:@"%@",error]
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:@"OK"
-                                                                     otherButtonTitles:nil, nil];
-                               [alert show];
-                               break;
-                           }
-                           default:
-                               break;
-                       }
-                   }
-         ];}
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = [[FCUUID uuidForDevice] substringFromIndex:16];
+        [SVProgressHUD showImage:nil status:@"已复制到剪切板"];
+    }];
+    
+//    NSArray *imageArray = @[[UIImage imageNamed:@"checkbox_selected"]];
+//    //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
+//    if (imageArray) {
+//
+//        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//        [shareParams SSDKSetupShareParamsByText:@"分享内容"
+//                                         images:imageArray
+//                                            url:[NSURL URLWithString:@"http://mob.com"]
+//                                          title:@"分享标题"
+//                                           type:SSDKContentTypeAuto];
+//        //有的平台要客户端分享需要加此方法，例如微博
+//        [shareParams SSDKEnableUseClientShare];
+//        //2、分享（可以弹出我们的分享菜单和编辑界面）
+//        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+//                                 items:nil
+//                           shareParams:shareParams
+//                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+//
+//                       switch (state) {
+//                           case SSDKResponseStateSuccess:
+//                           {
+//                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+//                                                                                   message:nil
+//                                                                                  delegate:nil
+//                                                                         cancelButtonTitle:@"确定"
+//                                                                         otherButtonTitles:nil];
+//                               [alertView show];
+//                               break;
+//                           }
+//                           case SSDKResponseStateFail:
+//                           {
+//                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                               message:[NSString stringWithFormat:@"%@",error]
+//                                                                              delegate:nil
+//                                                                     cancelButtonTitle:@"OK"
+//                                                                     otherButtonTitles:nil, nil];
+//                               [alert show];
+//                               break;
+//                           }
+//                           default:
+//                               break;
+//                       }
+//                   }
+//         ];}
 }
 
 - (void)didReceiveMemoryWarning {
