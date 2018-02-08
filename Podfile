@@ -3,4 +3,5 @@ target 'ChildTrack' do
 pod 'BaiduMapKit' #百度地图SDK
 pod 'SVProgressHUD'
 pod 'FCUUID'
+pod 'Bugly'
 end

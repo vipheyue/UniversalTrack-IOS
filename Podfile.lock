@@ -1,5 +1,6 @@
 PODS:
   - BaiduMapKit (3.3.4)
+  - Bugly (2.5.0)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - SVProgressHUD (1.1.3)
@@ -7,15 +8,17 @@ PODS:
 
 DEPENDENCIES:
   - BaiduMapKit
+  - Bugly
   - FCUUID
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   BaiduMapKit: 6f2d76a04b72e9af938afb5ca0f97d4417bbf9c0
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
 
-PODFILE CHECKSUM: 7b26167711dfbeab6ba7e15ab524fdbd57768622
+PODFILE CHECKSUM: 34644f4c004fd1a2eefc397a331457bf240a1526
 
 COCOAPODS: 1.3.1

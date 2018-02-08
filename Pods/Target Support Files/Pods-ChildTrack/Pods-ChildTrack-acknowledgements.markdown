@@ -27,6 +27,11 @@ SOFTWARE.
 
 
 
+## Bugly
+
+Copyright (C) 2017 Tencent Bugly, Inc. All rights reserved.
+
+
 ## FCUUID
 
 The MIT License (MIT)

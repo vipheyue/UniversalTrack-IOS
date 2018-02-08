@@ -38,6 +38,8 @@
 #define kNavigationBarHeight 44.0f
 #define kNavigationPlusStatusHeight (kStatusBarHeight + kNavigationBarHeight)
 
+// ***** SDK参数 *****
+#define BuglyAppId @"5b30645c34"
 #define TraceAK @"hpnQsDyUx5H1Mksoh2CjGgA0BXYgZhhu"
 #define TraceMcode @"com.welightworld.track"
 #define TraceServiceID 158728

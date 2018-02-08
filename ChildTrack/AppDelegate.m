@@ -20,7 +20,7 @@
 #import "WXApi.h"
 //支付宝SDK
 #import "APOpenAPI.h"
-
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -33,8 +33,7 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    [self initBaiduSDK];
-//    [self initShareSDK];
+    [self initSDK];
     
     // 调整SVProgressHUD的背景色和前景色
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
@@ -59,16 +58,18 @@
     return YES;
 }
 
-- (void)initBaiduSDK {
+- (void)initSDK {
     
-    // 设置鹰眼SDK的基础信息
-    // 每次调用startService开启轨迹服务之前，可以重新设置这些信息。
+    // ------ 设置鹰眼SDK的基础信息,每次调用startService开启轨迹服务之前，可以重新设置这些信息。 ------
     BTKServiceOption *sop = [[BTKServiceOption alloc] initWithAK:TraceAK mcode:TraceMcode serviceID:TraceServiceID keepAlive:YES];
     [[BTKAction sharedInstance] initInfo:sop];
     
-    // 初始化地图SDK
+    // ------ 初始化地图SDK ------
     BMKMapManager *mapManager = [[BMKMapManager alloc] init];
     [mapManager start:TraceAK generalDelegate:self];
+    
+    // ------ Bugly ------
+    [Bugly startWithAppId:BuglyAppId];
 }
 
 - (void)initShareSDK {
@@ -132,7 +133,10 @@
     if (0 == iError) {
         
         DLog(@"授权成功");
-        [[TrackManage sharedInstance] StartService];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [[TrackManage sharedInstance] StartService];
+        });
         
     } else {
         DLog(@"onGetPermissionState %d",iError);

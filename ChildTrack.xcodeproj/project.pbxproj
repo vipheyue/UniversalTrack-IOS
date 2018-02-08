@@ -58,6 +58,7 @@
 		5AA0969C201EEAD5001FD019 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA09690201EEAD5001FD019 /* SGQRCodeGenerateManager.m */; };
 		5AA0969D201EEAD5001FD019 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA09695201EEAD5001FD019 /* SGQRCodeAlbumManager.m */; };
 		5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA9C0B31FFBBF35008CB118 /* MapViewController.m */; };
+		5AB4E1DB202C204D008DBB95 /* SoftIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB4E1DA202C204D008DBB95 /* SoftIntroduceViewController.m */; };
 		5AD6C10E2014C52B004EAE5E /* TrackManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD6C10D2014C52B004EAE5E /* TrackManage.m */; };
 		5AF0DC56200C99DF0063FC2A /* CommUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0DC55200C99DF0063FC2A /* CommUtils.m */; };
 /* End PBXBuildFile section */
@@ -178,6 +179,8 @@
 		5AA09696201EEAD5001FD019 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
 		5AA9C0B21FFBBF35008CB118 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		5AA9C0B31FFBBF35008CB118 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5AB4E1D9202C204D008DBB95 /* SoftIntroduceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoftIntroduceViewController.h; sourceTree = "<group>"; };
+		5AB4E1DA202C204D008DBB95 /* SoftIntroduceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoftIntroduceViewController.m; sourceTree = "<group>"; };
 		5AD6C10C2014C52B004EAE5E /* TrackManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackManage.h; sourceTree = "<group>"; };
 		5AD6C10D2014C52B004EAE5E /* TrackManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackManage.m; sourceTree = "<group>"; };
 		5AF0DC54200C99DF0063FC2A /* CommUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommUtils.h; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				5A17ED8F200B98C800F215AD /* TrackedViewController.m */,
 				5A0443D8201B236F00A08B9B /* SGQRCodeScanningVC.h */,
 				5A0443D9201B236F00A08B9B /* SGQRCodeScanningVC.m */,
+				5AB4E1D9202C204D008DBB95 /* SoftIntroduceViewController.h */,
+				5AB4E1DA202C204D008DBB95 /* SoftIntroduceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				5A743A891FFBB26C00669B37 /* BaseViewController.m in Sources */,
 				5A9B22C31FFD111C003569DE /* SoftAgreementViewController.m in Sources */,
 				5AD6C10E2014C52B004EAE5E /* TrackManage.m in Sources */,
+				5AB4E1DB202C204D008DBB95 /* SoftIntroduceViewController.m in Sources */,
 				5A0443DA201B236F00A08B9B /* SGQRCodeScanningVC.m in Sources */,
 				5A743A4C1FFBAC2100669B37 /* AppDelegate.m in Sources */,
 				5AA9C0B41FFBBF35008CB118 /* MapViewController.m in Sources */,
