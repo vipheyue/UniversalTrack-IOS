@@ -14,6 +14,7 @@
 #import "UIView+Frame.h"
 #import "SVProgressHUD.h"
 #import "CommUtils.h"
+#import "Tool.h"
 #import "FCUUID.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 #import <BaiduMapAPI_Map/BMKPointAnnotation.h>
