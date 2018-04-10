@@ -7,6 +7,7 @@
 //
 
 #import "CommUtils.h"
+#import "FileNameDefines.h"
 
 @implementation CommUtils
 + (CommUtils *)sharedInstance {
@@ -35,4 +36,10 @@
     [setting synchronize];
 }
 
+- (NSMutableArray *)getSearchHistoryCache {
+    
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:SearchHistoryFileName];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
 @end

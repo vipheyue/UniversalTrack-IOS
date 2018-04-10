@@ -11,11 +11,19 @@
 #import "MapViewController.h"
 #import "TrackManage.h"
 #import "SGQRCodeScanningVC.h"
+#import "FileNameDefines.h"
+#import "HistoryTableCell.h"
+#import "HistoryFrameModel.h"
 
-@interface TrackViewController ()<SGQRCodeScanManagerDelegate, SGQRCodeAlbumManagerDelegate>
+@interface TrackViewController ()<SGQRCodeScanManagerDelegate, SGQRCodeAlbumManagerDelegate, UITableViewDelegate, UITableViewDataSource, HistoryTableCellDelegate>
 
 @property (nonatomic, strong) SGQRCodeScanManager *scanManager;
 @property (nonatomic, weak) UITextField *contentTxt;
+/** 历史记录数组 */
+@property (nonatomic, strong)NSMutableArray *searchHistoryArr;
+/** 历史记录frame数组 */
+@property (nonatomic, strong)NSMutableArray *searchHistoryFrameArr;
+@property (nonatomic, weak) UITableView *historyTable;
 
 @end
 
@@ -24,6 +32,19 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.searchHistoryArr = [[CommUtils sharedInstance] getSearchHistoryCache];
+    if (self.searchHistoryArr == nil) {
+        
+        self.searchHistoryArr = [NSMutableArray array];
+    }
+    self.searchHistoryFrameArr = [NSMutableArray array];
+    for (NSDictionary *dict in self.searchHistoryArr) {
+        
+        HistoryFrameModel *model = [[HistoryFrameModel alloc]init];
+        model.historyDict = dict;
+        [self.searchHistoryFrameArr addObject:model];
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"追踪他人";
     
@@ -60,6 +81,14 @@
     line.frame = CGRectMake(contentTxt.x, contentTxt.bottom, contentTxt.width, 1);
     line.backgroundColor = [UIColor colorWithHexString:@"ff4081"];
     [self.view addSubview:line];
+    
+    CGFloat historyTableY = line.bottom + 20;
+    UITableView *historyTable = [[UITableView alloc]initWithFrame:CGRectMake(line.x, historyTableY, scanQrCodeBtn.width, ScreenH - historyTableY - 5) style:UITableViewStylePlain];
+    historyTable.delegate = self;
+    historyTable.dataSource = self;
+    historyTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:historyTable];
+    self.historyTable = historyTable;
     
 }
 
@@ -117,6 +146,39 @@
     
     [SVProgressHUD show];
     __weak typeof (self)wSelf = self;
+    
+    NSDictionary *dict = @{@"id":self.contentTxt.text,
+                           @"remark":@""
+                           };
+    
+    for (int i = 0; i < self.searchHistoryArr.count; i++) {
+        
+        NSDictionary *historyDict = self.searchHistoryArr[i];
+        if ([historyDict[@"id"] isEqualToString:self.contentTxt.text]) {
+            
+            dict = historyDict;
+            [self.searchHistoryArr removeObject:historyDict];
+            [self.searchHistoryFrameArr removeObjectAtIndex:i];
+            break;
+        }
+    }
+
+    if (self.searchHistoryArr.count >= 10) { //最多显示10条
+        
+        [self.searchHistoryArr removeLastObject];
+        [self.searchHistoryFrameArr removeLastObject];
+    }
+    
+    [self.searchHistoryArr insertObject:dict atIndex:0];
+    
+    HistoryFrameModel *model = [[HistoryFrameModel alloc]init];
+    model.historyDict = dict;
+    [self.searchHistoryFrameArr insertObject:model atIndex:0];
+    
+    [self saveToCache];
+    
+    [self.historyTable reloadData];
+    
     [[TrackManage sharedInstance] trackWithCompletionBlock:self.contentTxt.text trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
        
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -124,12 +186,19 @@
             [SVProgressHUD dismiss];
             MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
             [wSelf.navigationController pushViewController:map animated:YES];
+            
         });
         
     }];
 }
 
-
+- (void)saveToCache {
+    
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:SearchHistoryFileName];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.searchHistoryArr];
+    [data writeToFile:path atomically:YES];
+}
 
 #pragma mark - - - SGQRCodeAlbumManagerDelegate
 //- (void)QRCodeAlbumManagerDidCancelWithImagePickerController:(SGQRCodeAlbumManager *)albumManager {
@@ -175,6 +244,28 @@
 //            [self removeFlashlightBtn];
 //        }
 //    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.searchHistoryArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    HistoryTableCell *cell = [HistoryTableCell cellWithTableView:tableView];
+    
+    HistoryFrameModel *frameModel = self.searchHistoryFrameArr[indexPath.row];
+    frameModel.indexPathRow = indexPath.row;
+    cell.frameModel = frameModel;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    HistoryFrameModel *model = self.searchHistoryFrameArr[indexPath.row];
+    return model.cellHeight;
 }
 
 - (void)didReceiveMemoryWarning {

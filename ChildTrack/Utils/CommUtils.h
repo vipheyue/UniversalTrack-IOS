@@ -19,5 +19,8 @@
  * 保存同意软件协议的状态
  */
 - (void)saveAgreeSoftState:(BOOL)isAgree;
-
+/**
+ * 获取追踪他人的历史记录
+ */
+- (NSMutableArray *)getSearchHistoryCache;
 @end
