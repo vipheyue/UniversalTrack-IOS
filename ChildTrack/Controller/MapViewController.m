@@ -65,7 +65,7 @@
         // 向地图窗口添加Overlay，需要实现BMKMapViewDelegate的-mapView:viewForOverlay:方法来生成标注对应的View
         [_mapView addOverlay:polyline];
     } else {
-        DLog(@"指定轨迹的轨迹点少于两个，无法绘制轨迹");
+        NSLog(@"指定轨迹的轨迹点少于两个，无法绘制轨迹");
     }
 }
 

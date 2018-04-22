@@ -8,18 +8,23 @@
 #ifndef Config_h
 #define Config_h
 
+//日志
 #ifdef DEBUG
-//打印日志
-#define DLog(format, ...) NSLog(format,##__VA_ARGS__)
+
+#define NSLog(fmt, ...) NSLog((@"%s:%d " fmt), [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, ##__VA_ARGS__);
 
 #else
 
-#define DLog(format, ...)
+#define NSLog(...)
 
 #endif
 
 #define GLOBAL_QUEUE dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define MAIN_QUEUE dispatch_get_main_queue()
+
+//引用
+#define WEAKSELF __weak __typeof(self)weakSelf = self;
+#define STRONGSELF __strong __typeof(weakSelf)strongSelf = weakSelf;
 
 #define kAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define BSNotificationCenter [NSNotificationCenter defaultCenter]

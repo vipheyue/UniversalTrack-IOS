@@ -15,7 +15,7 @@
 #import "HistoryTableCell.h"
 #import "HistoryFrameModel.h"
 
-@interface TrackViewController ()<SGQRCodeScanManagerDelegate, SGQRCodeAlbumManagerDelegate, UITableViewDelegate, UITableViewDataSource, HistoryTableCellDelegate>
+@interface TrackViewController ()<UITableViewDelegate, UITableViewDataSource, HistoryTableCellDelegate>
 
 @property (nonatomic, strong) SGQRCodeScanManager *scanManager;
 @property (nonatomic, weak) UITextField *contentTxt;
@@ -106,11 +106,11 @@
                         [self.navigationController pushViewController:vc animated:YES];
                     });
                     // 用户第一次同意了访问相机权限
-                    DLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
                     
                 } else {
                     // 用户第一次拒绝了访问相机权限
-                    DLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
                 }
             }];
         } else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
@@ -126,7 +126,7 @@
             [self presentViewController:alertC animated:YES completion:nil];
             
         } else if (status == AVAuthorizationStatusRestricted) {
-            DLog(@"因为系统原因, 无法访问相册");
+            NSLog(@"因为系统原因, 无法访问相册");
         }
     } else {
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
@@ -198,52 +198,6 @@
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.searchHistoryArr];
     [data writeToFile:path atomically:YES];
-}
-
-#pragma mark - - - SGQRCodeAlbumManagerDelegate
-//- (void)QRCodeAlbumManagerDidCancelWithImagePickerController:(SGQRCodeAlbumManager *)albumManager {
-//    [self.view addSubview:self.scanningView];
-//}
-//- (void)QRCodeAlbumManager:(SGQRCodeAlbumManager *)albumManager didFinishPickingMediaWithResult:(NSString *)result {
-//    if ([result hasPrefix:@"http"]) {
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_URL = result;
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-//
-//    } else {
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_bar_code = result;
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-//    }
-//}
-
-#pragma mark - - - SGQRCodeScanManagerDelegate
-- (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager didOutputMetadataObjects:(NSArray *)metadataObjects {
-    DLog(@"metadataObjects - - %@", metadataObjects);
-    if (metadataObjects != nil && metadataObjects.count > 0) {
-
-        [scanManager palySoundName:@"SGQRCode.bundle/sound.caf"];
-        [scanManager stopRunning];
-        [scanManager videoPreviewLayerRemoveFromSuperlayer];
-        
-        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_URL = [obj stringValue];
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-        
-    } else {
-        DLog(@"暂未识别出扫描的二维码");
-    }
-}
-
-- (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager brightnessValue:(CGFloat)brightnessValue {
-//    if (brightnessValue < - 1) {
-//        [self.view addSubview:self.flashlightBtn];
-//    } else {
-//        if (self.isSelectedFlashlightBtn == NO) {
-//            [self removeFlashlightBtn];
-//        }
-//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

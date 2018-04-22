@@ -82,13 +82,13 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStartService:(BTKServiceErrorCode)error {
     // 维护状态标志
     if (error == BTK_START_SERVICE_SUCCESS || error == BTK_START_SERVICE_SUCCESS_BUT_OFFLINE) {
-        DLog(@"轨迹服务开启成功");
+        NSLog(@"轨迹服务开启成功");
         self.isServiceStarted = YES;
         if (!self.isGatherStarted) {
             [[BTKAction sharedInstance] startGather:self];
         }
     } else {
-        DLog(@"轨迹服务开启失败");
+        NSLog(@"轨迹服务开启失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -137,10 +137,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStopService:(BTKServiceErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_SERVICE_NO_ERROR) {
-        DLog(@"轨迹服务停止成功");
+        NSLog(@"轨迹服务停止成功");
         self.isServiceStarted = NO;
     } else {
-        DLog(@"轨迹服务停止失败");
+        NSLog(@"轨迹服务停止失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -169,10 +169,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStartGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_START_GATHER_SUCCESS) {
-        DLog(@"开始采集成功");
+        NSLog(@"开始采集成功");
         self.isGatherStarted = YES;
     } else {
-        DLog(@"开始采集失败");
+        NSLog(@"开始采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -212,10 +212,10 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 -(void)onStopGather:(BTKGatherErrorCode)error {
     // 维护状态标志
     if (error == BTK_STOP_GATHER_NO_ERROR) {
-        DLog(@"停止采集成功");
+        NSLog(@"停止采集成功");
         self.isGatherStarted = NO;
     } else {
-        DLog(@"停止采集失败");
+        NSLog(@"停止采集失败");
     }
     // 构造广播内容
     NSString *title = nil;
@@ -252,7 +252,7 @@ static NSUInteger const kHistoryTrackPageSize = 1000;
 
         NSNumber *status = [dict objectForKey:@"status"];
         NSString *message = [dict objectForKey:@"message"];
-        DLog(@"%@",message);
+        NSLog(@"%@",message);
 
         if ([status intValue] != 0) {
             

@@ -123,20 +123,20 @@
 #pragma mark - BMKGeneralDelegate
 -(void)onGetNetworkState:(int)iError {
     if (0 == iError) {
-        DLog(@"联网成功");
+        NSLog(@"联网成功");
     } else{
-        DLog(@"onGetNetworkState %d",iError);
+        NSLog(@"onGetNetworkState %d",iError);
     }
 }
 
 - (void)onGetPermissionState:(int)iError {
     if (0 == iError) {
         
-        DLog(@"授权成功");
+        NSLog(@"授权成功");
         [[TrackManage sharedInstance] StartService];
         
     } else {
-        DLog(@"onGetPermissionState %d",iError);
+        NSLog(@"onGetPermissionState %d",iError);
     }
 }
 
