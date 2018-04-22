@@ -11,6 +11,7 @@
 #import "SoftAgreementViewController.h"
 #import "BaseNavigationController.h"
 #import "TrackManage.h"
+#import "MapViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
@@ -22,7 +23,8 @@
 #import "APOpenAPI.h"
 #import <Bugly/Bugly.h>
 
-@interface AppDelegate ()<BMKGeneralDelegate>
+
+@interface AppDelegate ()<BMKGeneralDelegate, UIAlertViewDelegate>
 
 @end
 
@@ -160,13 +162,52 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
     NSString *pasteStr = [UIPasteboard generalPasteboard].string;
-    
-}
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\￥(.*?)\\￥"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    NSArray *matches = [regex matchesInString:pasteStr
+                                      options:NSMatchingReportCompletion
+                                        range:NSMakeRange(0, [pasteStr length])];
 
+    NSString *matchString = nil;
+    for (NSTextCheckingResult *match in matches) {
+        NSRange matchRange = [match range];
+        matchString = [pasteStr substringWithRange:matchRange];
+        break; // 只处理第一个
+    }
+    matchString = [matchString stringByReplacingOccurrencesOfString:@"￥" withString:@""];
+    if (matchString.length == 0) {
+        
+        return;
+    }
+    
+    NSString *message = [NSString stringWithFormat:@"确定要查询身份ID为：%@的用户轨迹吗？",matchString];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+    
+    [UIPasteboard generalPasteboard].string = @""; //清空剪切板
+}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 1) {
+        
+//        [[TrackManage sharedInstance] trackWithCompletionBlock:@"" trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                [SVProgressHUD dismiss];
+//                MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
+//                [wSelf.navigationController pushViewController:map animated:YES];
+//                
+//            });
+//            
+//        }];
+    }
+}
 
 @end

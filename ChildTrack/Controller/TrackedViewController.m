@@ -61,7 +61,7 @@
     
     [SVProgressHUD show];
     
-    NSString *textToShare = [NSString stringWithFormat:@"长按复制,打开全能追踪APP,查看我的轨迹\n¥%@¥",[[FCUUID uuidForDevice] substringFromIndex:16]];
+    NSString *textToShare = [NSString stringWithFormat:@"长按复制,打开全能追踪APP,查看我的轨迹\n￥%@￥",[[FCUUID uuidForDevice] substringFromIndex:16]];
     
     NSArray *activityItems = @[textToShare];
     
