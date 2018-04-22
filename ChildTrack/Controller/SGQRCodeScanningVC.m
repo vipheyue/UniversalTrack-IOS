@@ -8,6 +8,8 @@
 
 #import "SGQRCodeScanningVC.h"
 #import "SGQRCode.h"
+#import "TrackManage.h"
+#import "MapViewController.h"
 
 @interface SGQRCodeScanningVC () <SGQRCodeScanManagerDelegate, SGQRCodeAlbumManagerDelegate>
 @property (nonatomic, strong) SGQRCodeScanManager *manager;
@@ -96,35 +98,29 @@
     [self.view addSubview:self.scanningView];
 }
 - (void)QRCodeAlbumManager:(SGQRCodeAlbumManager *)albumManager didFinishPickingMediaWithResult:(NSString *)result {
-//    if ([result hasPrefix:@"http"]) {
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_URL = result;
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-//
-//    } else {
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_bar_code = result;
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-//    }
+
+    [self getTrackDataByTrackId:result?:@""];
 }
 
 #pragma mark - - - SGQRCodeScanManagerDelegate
 - (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager didOutputMetadataObjects:(NSArray *)metadataObjects {
-//    NSLog(@"metadataObjects - - %@", metadataObjects);
-//    if (metadataObjects != nil && metadataObjects.count > 0) {
-//        [scanManager palySoundName:@"SGQRCode.bundle/sound.caf"];
-//        [scanManager stopRunning];
-//        [scanManager videoPreviewLayerRemoveFromSuperlayer];
-//        
-//        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
-//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-//        jumpVC.jump_URL = [obj stringValue];
-//        [self.navigationController pushViewController:jumpVC animated:YES];
-//    } else {
-//        NSLog(@"暂未识别出扫描的二维码");
-//    }
+    
+    NSLog(@"metadataObjects - - %@", metadataObjects);
+    if (metadataObjects != nil && metadataObjects.count > 0) {
+        [scanManager palySoundName:@"SGQRCode.bundle/sound.caf"];
+        [scanManager stopRunning];
+        [scanManager videoPreviewLayerRemoveFromSuperlayer];
+
+        AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
+        [self getTrackDataByTrackId:[obj stringValue]?:@""];
+        
+    } else {
+        
+        NSLog(@"暂未识别出扫描的二维码");
+    }
 }
 - (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager brightnessValue:(CGFloat)brightnessValue {
+    
     if (brightnessValue < - 1) {
         [self.view addSubview:self.flashlightBtn];
     } else {
@@ -132,6 +128,23 @@
             [self removeFlashlightBtn];
         }
     }
+}
+
+- (void)getTrackDataByTrackId:(NSString *)trackId {
+    
+    [SVProgressHUD show];
+    WEAKSELF
+    [[TrackManage sharedInstance] trackWithCompletionBlock:trackId trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
+        STRONGSELF
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
+            [strongSelf.navigationController pushViewController:map animated:YES];
+            
+        });
+        
+    }];
 }
 
 - (UILabel *)promptLabel {
