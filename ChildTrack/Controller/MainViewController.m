@@ -12,10 +12,11 @@
 #import "TrackViewController.h"
 #import "TrackedViewController.h"
 #import "TrackManage.h"
+#import "CTPushTransition.h"
 
 #define Margin 30
 
-@interface MainViewController ()
+@interface MainViewController ()<UINavigationControllerDelegate>
 
 @end
 
@@ -84,11 +85,25 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
+    self.navigationController.delegate = self;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if (self.navigationController.delegate == self) {
+        self.navigationController.delegate = nil;
+    }
+}
+
+#pragma mark UINavigationControllerDelegate
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+{
+    if (fromVC == self && [toVC isKindOfClass:[SoftIntroduceViewController class]]) {
+        return [[CTPushTransition alloc] init];
+        
+    } else {
+        return nil;
+    }
 }
 
 - (void)btnClick:(UIButton *)sender {
