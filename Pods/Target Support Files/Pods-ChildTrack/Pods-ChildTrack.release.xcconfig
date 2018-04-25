@@ -1,10 +1,10 @@
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/BaiduMapKit/BaiduMapKit" "${PODS_ROOT}/Bugly"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/BaiduMapKit" "${PODS_ROOT}/Headers/Public/Bugly" "${PODS_ROOT}/Headers/Public/FCUUID" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/UICKeyChainStore"
-LIBRARY_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/FCUUID" "$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD" "$PODS_CONFIGURATION_BUILD_DIR/UICKeyChainStore" "${PODS_ROOT}/BaiduMapKit/BaiduMapKit/thirdlibs"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FCUUID" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD" "${PODS_CONFIGURATION_BUILD_DIR}/UICKeyChainStore" "${PODS_ROOT}/BaiduMapKit/BaiduMapKit/thirdlibs"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/BaiduMapKit" -isystem "${PODS_ROOT}/Headers/Public/Bugly" -isystem "${PODS_ROOT}/Headers/Public/FCUUID" -isystem "${PODS_ROOT}/Headers/Public/SVProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/UICKeyChainStore"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"FCUUID" -l"SVProgressHUD" -l"UICKeyChainStore" -l"c++" -l"crypto" -l"sqlite3.0" -l"ssl" -l"stdc++.6.0.9" -l"z" -framework "BaiduMapAPI_Base" -framework "BaiduMapAPI_Cloud" -framework "BaiduMapAPI_Location" -framework "BaiduMapAPI_Map" -framework "BaiduMapAPI_Radar" -framework "BaiduMapAPI_Search" -framework "BaiduMapAPI_Utils" -framework "Bugly" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreTelephony" -framework "Foundation" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
-PODS_BUILD_DIR = $BUILD_DIR
-PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods

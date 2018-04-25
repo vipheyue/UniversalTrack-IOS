@@ -12,6 +12,14 @@ DEPENDENCIES:
   - FCUUID
   - SVProgressHUD
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - BaiduMapKit
+    - Bugly
+    - FCUUID
+    - SVProgressHUD
+    - UICKeyChainStore
+
 SPEC CHECKSUMS:
   BaiduMapKit: 6f2d76a04b72e9af938afb5ca0f97d4417bbf9c0
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
@@ -21,4 +29,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 34644f4c004fd1a2eefc397a331457bf240a1526
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0
