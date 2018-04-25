@@ -13,6 +13,8 @@
 		5A17ED8A200B8B8B00F215AD /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A17ED88200B8B8B00F215AD /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A17ED8D200B914800F215AD /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A17ED8C200B914800F215AD /* TrackViewController.m */; };
 		5A17ED90200B98C800F215AD /* TrackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A17ED8F200B98C800F215AD /* TrackedViewController.m */; };
+		5A4A327D208DAD9B00D6ED25 /* AppDelegate+RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A327C208DAD9B00D6ED25 /* AppDelegate+RootViewController.m */; };
+		5A4A3281208E314A00D6ED25 /* CTPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A3280208E314A00D6ED25 /* CTPushTransition.m */; };
 		5A5F988B201713640033CEBA /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5F988A201713640033CEBA /* Tool.m */; };
 		5A5F98B020172FEA0033CEBA /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A5F989620172FEA0033CEBA /* README.txt */; };
 		5A5F98B120172FEA0033CEBA /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5F989820172FEA0033CEBA /* libWeChatSDK.a */; };
@@ -107,6 +109,10 @@
 		5A17ED8C200B914800F215AD /* TrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
 		5A17ED8E200B98C800F215AD /* TrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackedViewController.h; sourceTree = "<group>"; };
 		5A17ED8F200B98C800F215AD /* TrackedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackedViewController.m; sourceTree = "<group>"; };
+		5A4A327B208DAD9B00D6ED25 /* AppDelegate+RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+RootViewController.h"; sourceTree = "<group>"; };
+		5A4A327C208DAD9B00D6ED25 /* AppDelegate+RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+RootViewController.m"; sourceTree = "<group>"; };
+		5A4A327F208E314A00D6ED25 /* CTPushTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTPushTransition.h; sourceTree = "<group>"; };
+		5A4A3280208E314A00D6ED25 /* CTPushTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTPushTransition.m; sourceTree = "<group>"; };
 		5A5F9889201713640033CEBA /* Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		5A5F988A201713640033CEBA /* Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		5A5F989420172FEA0033CEBA /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -258,6 +264,15 @@
 				4330BD1463DB71453230308A /* libPods-ChildTrack.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5A4A327E208E30E200D6ED25 /* Animate */ = {
+			isa = PBXGroup;
+			children = (
+				5A4A327F208E314A00D6ED25 /* CTPushTransition.h */,
+				5A4A3280208E314A00D6ED25 /* CTPushTransition.m */,
+			);
+			path = Animate;
 			sourceTree = "<group>";
 		};
 		5A5F988F20172FEA0033CEBA /* ShareSDK */ = {
@@ -476,6 +491,8 @@
 				5A743A921FFBB6E700669B37 /* UIColor+String.m */,
 				5A743A931FFBB6E700669B37 /* UIView+Frame.h */,
 				5A743A951FFBB6E700669B37 /* UIView+Frame.m */,
+				5A4A327B208DAD9B00D6ED25 /* AppDelegate+RootViewController.h */,
+				5A4A327C208DAD9B00D6ED25 /* AppDelegate+RootViewController.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -483,6 +500,7 @@
 		5A743A801FFBB14C00669B37 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A4A327E208E30E200D6ED25 /* Animate */,
 				5A743A8B1FFBB29100669B37 /* Config.h */,
 				5AF0DC54200C99DF0063FC2A /* CommUtils.h */,
 				5AF0DC55200C99DF0063FC2A /* CommUtils.m */,
@@ -574,7 +592,6 @@
 				5A743A431FFBAC2100669B37 /* Sources */,
 				5A743A441FFBAC2100669B37 /* Frameworks */,
 				5A743A451FFBAC2100669B37 /* Resources */,
-				2EFDBA6E5366DF3B64ADDF4A /* [CP] Embed Pods Frameworks */,
 				4CDC93EE662A8C3BFC8A2F55 /* [CP] Copy Pods Resources */,
 				5A17ED87200B8B6800F215AD /* Embed Frameworks */,
 			);
@@ -708,21 +725,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2EFDBA6E5366DF3B64ADDF4A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChildTrack/Pods-ChildTrack-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4CDC93EE662A8C3BFC8A2F55 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,7 +737,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -767,6 +770,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A4A327D208DAD9B00D6ED25 /* AppDelegate+RootViewController.m in Sources */,
 				5A17ED8D200B914800F215AD /* TrackViewController.m in Sources */,
 				5A743A5A1FFBAC2100669B37 /* main.m in Sources */,
 				5AA0969C201EEAD5001FD019 /* SGQRCodeGenerateManager.m in Sources */,
@@ -787,6 +791,7 @@
 				5AA0969D201EEAD5001FD019 /* SGQRCodeAlbumManager.m in Sources */,
 				5AA09699201EEAD5001FD019 /* SGQRCodeHelperTool.m in Sources */,
 				5AD0D5B1204650FA00C0DDB0 /* HistoryTableCell.m in Sources */,
+				5A4A3281208E314A00D6ED25 /* CTPushTransition.m in Sources */,
 				5AA0969B201EEAD5001FD019 /* SGQRCodeScanManager.m in Sources */,
 				5A743A961FFBB6E700669B37 /* UIColor+String.m in Sources */,
 				5A17ED90200B98C800F215AD /* TrackedViewController.m in Sources */,

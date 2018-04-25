@@ -7,11 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "AppDelegate+RootViewController.h"
 #import "MainViewController.h"
 #import "SoftAgreementViewController.h"
 #import "BaseNavigationController.h"
 #import "TrackManage.h"
 #import "MapViewController.h"
+
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
@@ -25,6 +27,9 @@
 
 
 @interface AppDelegate ()<BMKGeneralDelegate, UIAlertViewDelegate>
+
+/** 身份ID */
+@property (nonatomic, copy) NSString *identityId;
 
 @end
 
@@ -162,6 +167,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
     NSString *pasteStr = [UIPasteboard generalPasteboard].string;
+    
+    if (pasteStr.length == 0) {
+        
+        return;
+    }
+    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\￥(.*?)\\￥"
                                                                            options:NSRegularExpressionCaseInsensitive
                                                                              error:nil];
@@ -181,6 +192,8 @@
         return;
     }
     
+    self.identityId = matchString;
+    
     NSString *message = [NSString stringWithFormat:@"确定要查询身份ID为：%@的用户轨迹吗？",matchString];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
@@ -196,17 +209,16 @@
     
     if (buttonIndex == 1) {
         
-//        [[TrackManage sharedInstance] trackWithCompletionBlock:@"" trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                [SVProgressHUD dismiss];
-//                MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
-//                [wSelf.navigationController pushViewController:map animated:YES];
-//                
-//            });
-//            
-//        }];
+        [[TrackManage sharedInstance] trackWithCompletionBlock:self.identityId trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [SVProgressHUD dismiss];
+                MapViewController *mapVC = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
+                [[self getTopViewController].navigationController pushViewController:mapVC animated:YES];
+            });
+            
+        }];
     }
 }
 
