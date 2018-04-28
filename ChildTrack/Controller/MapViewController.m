@@ -6,6 +6,13 @@
 //  Copyright © 2018 zzy. All rights reserved.
 //
 
+
+//将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
+//- (CGRect)convertRect:(CGRect)rect toView:(UIView *)view;
+
+//将rect从view中转换到当前视图中，返回在当前视图中的rect
+//- (CGRect)convertRect:(CGRect)rect fromView:(UIView *)view;
+
 #import "MapViewController.h"
 
 @interface MapViewController ()<BMKMapViewDelegate>
@@ -36,6 +43,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
     self.navigationItem.title = @"全能追踪";
     _mapView = [[BMKMapView alloc]initWithFrame:self.view.frame];
     self.view = _mapView;
@@ -60,10 +68,31 @@
     BMKPolyline *polyline = [BMKPolyline polylineWithPoints:self.points count:[self.poisWithoutZero count]];
     
     if (self.poisWithoutZero.count > 1) {
-        // 设定当前地图的显示范围
-        //        [_mapView setRegion:viewRegion animated:YES];
+        
+        double minLat = 90.0;
+        double maxLat = -90.0;
+        double minLon = 180.0;
+        double maxLon = -180.0;
+        for (size_t i = 0; i < self.poisWithoutZero.count; i++) {
+            
+            NSDictionary *dict = self.poisWithoutZero[i];
+            minLat = fmin(minLat, [dict[@"latitude"] doubleValue]);
+            maxLat = fmax(maxLat, [dict[@"latitude"] doubleValue]);
+            minLon = fmin(minLon, [dict[@"longitude"] doubleValue]);
+            maxLon = fmax(maxLon, [dict[@"longitude"] doubleValue]);
+        }
+//        CLLocationCoordinate2D center = CLLocationCoordinate2DMake((minLat + maxLat) * 0.5, (minLon + maxLon) * 0.5);
+//        BMKCoordinateSpan span;
+//        span.latitudeDelta = (maxLat - minLat) + 0.01;
+//        span.longitudeDelta = (maxLon - minLon) + 0.01;
+//        BMKCoordinateRegion region;
+//        region.center = center;
+//        region.span = span;
+//        // 设定当前地图的显示范围
+//        [_mapView setRegion:region animated:YES];
         // 向地图窗口添加Overlay，需要实现BMKMapViewDelegate的-mapView:viewForOverlay:方法来生成标注对应的View
         [_mapView addOverlay:polyline];
+        
     } else {
         NSLog(@"指定轨迹的轨迹点少于两个，无法绘制轨迹");
     }

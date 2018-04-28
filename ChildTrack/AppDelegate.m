@@ -209,6 +209,7 @@
     
     if (buttonIndex == 1) {
         
+        [SVProgressHUD show];
         [[TrackManage sharedInstance] trackWithCompletionBlock:self.identityId trackBlock:^(BMKMapPoint *points, NSMutableArray *poisWithoutZero) {
             
             dispatch_async(dispatch_get_main_queue(), ^{

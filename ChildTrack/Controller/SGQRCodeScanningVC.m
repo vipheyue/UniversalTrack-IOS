@@ -142,6 +142,12 @@
             MapViewController *map = [[MapViewController alloc]initWithParams:poisWithoutZero points:points];
             [strongSelf.navigationController pushViewController:map animated:YES];
             
+            NSMutableArray *VCs = self.navigationController.viewControllers.mutableCopy;
+            if (VCs.count > 2) {
+                [VCs removeObjectAtIndex:VCs.count - 2];
+            }
+            [self.navigationController setViewControllers:VCs animated:NO];
+            
         });
         
     }];
